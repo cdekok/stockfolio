@@ -1,0 +1,36 @@
+{
+  "name": "stockfolio",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "electron-webpack dev",
+    "compile": "electron-webpack",
+    "dist": "yarn compile && electron-builder",
+    "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "format": "prettier --parser vue --write './src/*/**.vue' && prettier --parser typescript --write './src/*/**.ts'"
+  },
+  "dependencies": {
+    "@types/socket.io-client": "^1.4.32",
+    "electron-store": "^1.3.0",
+    "fuse.js": "^3.2.0",
+    "source-map-support": "^0.5.3",
+    "vue": "^2.5.13",
+    "vue-router": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/electron-store": "^1.3.0",
+    "electron": "1.8.2",
+    "electron-builder": "^20.0.6",
+    "electron-webpack": "^1.13.0",
+    "electron-webpack-ts": "^1.4.0",
+    "electron-webpack-vue": "^1.4.0",
+    "node-sass": "^4.7.2",
+    "prettier": "1.11.1",
+    "sass-loader": "^6.0.6",
+    "typescript": "^2.7.2",
+    "webpack": "^3.11.0"
+  },
+  "resolutions": {
+    "webpack-sources": "1.0.1"
+  }
+}
