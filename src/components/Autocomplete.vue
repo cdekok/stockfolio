@@ -18,6 +18,7 @@
 import Vue from "vue";
 import Config from "../library/Config";
 import Fuse from "fuse.js";
+import debounce from "lodash.debounce";
 
 const store = new Config();
 
@@ -32,7 +33,9 @@ function getSearch(data: Array<Object>): Fuse {
   return new Fuse(data, {
     shouldSort: true,
     minMatchCharLength: 1,
-    threshold: 0.6,
+    tokenize: true,
+    matchAllTokens: true,
+    threshold: 0.1,
     location: 0,
     distance: 100,
     maxPatternLength: 32,
@@ -59,10 +62,10 @@ export default Vue.extend({
       this.close();
       this.$router.push("/");
     },
-    update(e: KeyboardEvent) {
+    update: debounce(function(e:KeyboardEvent) {
       const val = (<HTMLInputElement>e.target).value;
       this.suggestions = this.search.search(val);
-    },
+    }, 300),
     close(): void {
       this.suggestions = [];
       this.text = "";
