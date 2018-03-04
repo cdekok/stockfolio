@@ -33,13 +33,13 @@ async function fetchData(symbols: Array<string>): Promise<Object> {
 let timer: number | null = null;
 
 export default Vue.extend({
-  data: () => {
+  data() {
     const symbols = config.getSymbols();
     return {
       symbols
     };
   },
-  mounted: function() {
+  mounted() {
     this.updateData();
     timer = window.setInterval(this.updateData, 10000);
   },
@@ -49,14 +49,14 @@ export default Vue.extend({
     }
   },
   methods: {
-    select(value:Object) {
-      this.$router.push('/chart/' + value.symbol);
+    select(value: Object) {
+      this.$router.push("/chart/" + value.symbol);
     },
     updateData(): void {
       const symbols = this.getSymbols();
       fetchData(symbols).then((data: Object) => {
         for (const symbol in data) {
-          this.$set(this.symbols[symbol], 'data', data[symbol]);
+          this.$set(this.symbols[symbol], "data", data[symbol]);
         }
       });
     },

@@ -62,7 +62,7 @@ export default Vue.extend({
       this.close();
       this.$router.push("/");
     },
-    update: debounce(function(e:KeyboardEvent) {
+    update: debounce(function(e: KeyboardEvent) {
       const val = (<HTMLInputElement>e.target).value;
       this.suggestions = this.search.search(val);
     }, 300),
