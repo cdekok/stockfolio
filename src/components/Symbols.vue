@@ -3,13 +3,13 @@
     <div>Total:</div>
     <ul class="symbol">
         <li v-for="value in symbols" :key="value.symbol">
-          <span @click="select(value)">{{value.symbol}}</span>
-            <div class="symbol-data" v-if="value.data">
-              <span class="price">{{ value.data.quote.latestPrice}}</span>
-              <span class="change">{{ value.data.quote.change}}</span>
-              <span class="change-percent">({{ value.data.quote.changePercent}}%)</span>
-            </div>
-            <button class="delete" @click="remove(value)">delete</button>
+          <span class="symbol" @click="select(value)">{{value.symbol}}</span>
+          <div class="symbol-data" v-if="value.data">
+            <span class="price">{{ value.data.quote.latestPrice}}</span>
+            <span class="change">{{ value.data.quote.change}}</span>
+            <span class="change-percent">({{ value.data.quote.changePercent}}%)</span>
+          </div>
+          <button class="delete" @click="remove(value)">delete</button>
         </li>
     </ul>
   </div>
@@ -49,7 +49,9 @@ export default Vue.extend({
     }
   },
   methods: {
-    select() {},
+    select(value:Object) {
+      this.$router.push('/chart/' + value.symbol);
+    },
     updateData(): void {
       const symbols = this.getSymbols();
       fetchData(symbols).then((data: Object) => {
@@ -82,6 +84,9 @@ ul.symbol {
     display: grid;
     grid-gap: 1px;
     grid-template-columns: minmax(0px, 150px) 200px 70px;
+    .symbol {
+      cursor: pointer;
+    }
   }
 }
 </style>
