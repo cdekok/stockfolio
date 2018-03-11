@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Blockfolio</h1>
+    <h1>Stockfolio</h1>
     <router-link to="/">Overview</router-link>
     <router-link to="/symbol/add">Add symbol</router-link>
     <router-view></router-view>
