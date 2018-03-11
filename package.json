@@ -12,7 +12,11 @@
     "compile": "electron-webpack",
     "dist": "yarn compile && electron-builder",
     "dist:dir": "yarn dist --dir -c.compression=store -c.mac.identity=null",
+    "pre-commit": "lint-staged",
     "format": "prettier --parser vue --write './src/*/**.vue' && prettier --parser typescript --write './src/*/**.ts'"
+  },
+  "lint-staged": {
+    "*.{js,ts,vue,json,css,md}": ["yarn format", "git add"]
   },
   "dependencies": {
     "@types/socket.io-client": "^1.4.32",
@@ -32,6 +36,8 @@
     "electron-webpack": "^1.13.0",
     "electron-webpack-ts": "^1.4.0",
     "electron-webpack-vue": "^1.4.0",
+    "husky": "^0.14.3",
+    "lint-staged": "^7.0.0",
     "node-sass": "^4.7.2",
     "prettier": "1.11.1",
     "sass-loader": "^6.0.6",
