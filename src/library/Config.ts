@@ -6,7 +6,7 @@ class Config {
   constructor() {
     this.store = new Store();
   }
-  addSymbol(data: Object): void {
+  addSymbol(data: any): void {
     this.store.set("symbols." + this.escape(data.symbol), data);
   }
 
@@ -14,11 +14,11 @@ class Config {
     this.store.delete("symbols." + this.escape(symbol));
   }
 
-  getSymbolData(symbol: string): Object {
+  getSymbolData(symbol: string): any {
     return this.store.get("symbols." + this.escape(symbol));
   }
 
-  getSymbols(): Array<Object> {
+  getSymbols(): Array<any> {
     return this.store.get("symbols");
   }
 
