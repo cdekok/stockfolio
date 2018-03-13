@@ -4,11 +4,11 @@
     <ul class="symbol">
         <li v-for="value in symbols" :key="value.symbol">
           <span class="symbol" @click="select(value)">{{value.symbol}}</span>
-          <div class="symbol-data" v-if="value.data">
-            <span class="price">{{ value.data.quote.latestPrice}}</span>
-            <span class="change">{{ value.data.quote.change}}</span>
-            <span class="change-percent">({{ value.data.quote.changePercent }}%)</span>
-          </div>
+          <span class="price">{{ value.data.quote.latestPrice}}</span>
+          <span class="change">{{ value.data.quote.change}}</span>
+          <span class="change-percent"
+            v-bind:class="[value.data.quote.changePercent > 0 ? 'positive' : 'negative']"
+            >({{ value.data.quote.changePercent }}%)</span>
           <button class="delete" @click="remove(value)">delete</button>
         </li>
     </ul>
@@ -85,9 +85,18 @@ ul.symbol {
   li {
     display: grid;
     grid-gap: 1px;
-    grid-template-columns: minmax(0px, 150px) 200px 70px;
+    grid-template-columns: minmax(0px, 70px) 70px 70px 70px 70px;
     .symbol {
       cursor: pointer;
+    }
+    .negative {
+      color: rgb(158, 19, 19);
+    }
+    .positive {
+      color: rgb(14, 141, 14);
+    }
+    &:nth-child(even) {
+      background: rgb(54, 52, 52);
     }
   }
 }
