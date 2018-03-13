@@ -56,6 +56,8 @@ export default Vue.extend({
       const symbols = this.getSymbols();
       fetchData(symbols).then((data: Object) => {
         for (const symbol in data) {
+          const symbolData = data[symbol];
+          symbolData.quote.changePercent = parseFloat(symbolData.quote.changePercent).toFixed(2);
           this.$set(this.symbols[symbol], "data", data[symbol]);
         }
       });
