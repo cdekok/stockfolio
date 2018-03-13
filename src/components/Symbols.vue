@@ -7,7 +7,7 @@
           <div class="symbol-data" v-if="value.data">
             <span class="price">{{ value.data.quote.latestPrice}}</span>
             <span class="change">{{ value.data.quote.change}}</span>
-            <span class="change-percent">({{ value.data.quote.changePercent}}%)</span>
+            <span class="change-percent">({{ value.data.quote.changePercent }}%)</span>
           </div>
           <button class="delete" @click="remove(value)">delete</button>
         </li>
@@ -23,7 +23,7 @@ const config = new Config();
 
 async function fetchData(symbols: Array<string>): Promise<Object> {
   const url =
-    "https://api.iextrading.com/1.0/stock/market/batch?types=quote&symbols=" +
+    "https://api.iextrading.com/1.0/stock/market/batch?displayPercent=true&types=quote&symbols=" +
     symbols.toString();
   const response = await fetch(url);
   const data = await response.json();
